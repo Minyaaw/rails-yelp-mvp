@@ -6,18 +6,39 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-puts "Cleaning database..."
-Restaurant.destroy_all
+Restaurant.destroy_all if Rails.env.development?
 
-puts "Creating restaurants..."
-dishoom = {name: "Dishoom", address: "7 Boundary St, London E2 7JE", category: "chinese"}
-pizza_east =  {name: "Pizza East", address: "56A Shoreditch High St, London E1 6PQ", category: "italian"}
-anata =  {name: "Anata", address: "Grand Place, Brussels", category: "japanese"}
-uhlala =  {name: "Uh lala", address: "245 High St, Paris", category: "french"}
-fryez =  {name: "Fryez", address: "Rue de le mango, Sant Guilles", category: "belgian"}
+Restaurant.create!(
+  name: "C'est Bon C'est Belge",
+  address: "Rue du Bon-Secours, Brussel",
+  phone_number: "+321 23 45 67 89",
+  category: "belgian"
+)
 
-[dishoom, pizza_east, anata, uhlala, fryez].each do |attributes|
-  restaurant = Restaurant.create!(attributes)
-  puts "Created #{restaurant.name}"
-end
-puts "Finished!"
+Restaurant.create!(
+  name: "Epicure",
+  address: "Faubourg Saint Honoré, Paris",
+  phone_number: "+331 23 45 67 89",
+  category: "french"
+)
+
+Restaurant.create!(
+  name: "Ristorante A Mano",
+  address: "Strausberger Platz, Berlin",
+  phone_number: "+491 23 45 67 89",
+  category: "italian"
+)
+
+Restaurant.create!(
+  name: "Teppanyaki Restaurant Sazanka",
+  address: "Ferdinand Bolstraat, Amsterdam",
+  phone_number: "+311 23 45 67 89",
+  category: "japanese"
+)
+
+Restaurant.create!(
+  name: "Sichuan Folk",
+  address: "Shoreditch, London",
+  phone_number: "+441 23 45 67 89",
+  category: "chinese"
+)
